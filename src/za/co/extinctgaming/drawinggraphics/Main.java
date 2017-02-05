@@ -6,10 +6,7 @@ import static za.co.extinctgaming.drawinggraphics.styling.CustomColors.*;
 import za.co.extinctgaming.drawinggraphics.input.Keyboard;
 import za.co.extinctgaming.drawinggraphics.input.Mouse;
 import za.co.extinctgaming.drawinggraphics.resources.Images;
-import za.co.extinctgaming.drawinggraphics.screens.About;
-import za.co.extinctgaming.drawinggraphics.screens.LevelOne;
-import za.co.extinctgaming.drawinggraphics.screens.MainMenu;
-import za.co.extinctgaming.drawinggraphics.screens.Options;
+import za.co.extinctgaming.drawinggraphics.screens.*;
 import za.co.extinctgaming.drawinggraphics.styling.CustomColors;
 
 import javax.swing.*;
@@ -25,15 +22,8 @@ public class Main extends JPanel implements Runnable {
 
     public static Images images;
 
-    public enum Screen {
-        MAIN_MENU,
-        OPTIONS,
-        ABOUT,
-        LEVEL_ONE
-    }
-
     public static boolean debug = false;
-    public static Screen activeScreen = Screen.MAIN_MENU;
+    public static Screen activeScreen = null;
     public static boolean running;
 
     private int window_width = 1280;
@@ -52,22 +42,14 @@ public class Main extends JPanel implements Runnable {
     private int ticksCountAvg = 0;
     private long ticksTimer = 0;
 
-    private MainMenu mainMenu;
-    private Options options;
-    private About about;
-    private LevelOne levelOne;
-
-    public Main() {
+    private Main() {
         running = true;
 
         loadResources();
         createFrame();
         createThread();
 
-        mainMenu = new MainMenu();
-        options = new Options();
-        about = new About();
-        levelOne = new LevelOne();
+        activeScreen = new MainMenu();
     }
 
     private void loadResources() {
@@ -103,22 +85,7 @@ public class Main extends JPanel implements Runnable {
     }
 
     private void update() {
-        switch (activeScreen) {
-            case MAIN_MENU:
-                mainMenu.update();
-                break;
-            case OPTIONS:
-                options.update();
-                break;
-            case ABOUT:
-                about.update();
-                break;
-            case LEVEL_ONE:
-                levelOne.update();
-                break;
-            default:
-                System.out.println("Nothing to Update");
-        }
+        activeScreen.update();
     }
 
     public void paint(Graphics graphics) {
@@ -128,26 +95,7 @@ public class Main extends JPanel implements Runnable {
         graphics2D.setColor(Color.BLACK);
         graphics.fillRect(0, 0, getWidth(), getHeight());
 
-        switch (activeScreen) {
-            case MAIN_MENU:
-                mainMenu.draw(this, graphics2D);
-                break;
-            case OPTIONS:
-                options.draw(this, graphics2D);
-                break;
-            case ABOUT:
-                about.draw(this, graphics2D);
-                break;
-            case LEVEL_ONE:
-                levelOne.draw(this, graphics2D);
-                break;
-            default:
-                graphics2D.setFont(ERROR_FONT);
-                graphics2D.setColor(ERROR_FOREGROUND_COLOR);
-                String errorMsg = "No Screen Found";
-                int text_width = graphics2D.getFontMetrics().stringWidth(errorMsg);
-                graphics2D.drawString(errorMsg, (getWidth() / 2) - (text_width / 2), getHeight() / 2);
-        }
+        activeScreen.draw(this, graphics2D);
 
         if (debug) {
             graphics2D.setColor(CustomColors.DEBUG_BACKGROUND_COLOR);

@@ -9,9 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
-public class About {
-    Rectangle backButton = new Rectangle(0, 0, 0, 0);
-
+public class About implements Screen {
     public void draw(JPanel panel, Graphics2D graphics2D) {
         graphics2D.setColor(CustomColors.ABOUT_BACKGROUND_COLOR);
         graphics2D.fillRect(0, 0, panel.getWidth(), panel.getHeight());
@@ -44,7 +42,7 @@ public class About {
     public void update() {
         if (Keyboard.keys[KeyEvent.VK_ESCAPE]) {
             Keyboard.keys[KeyEvent.VK_ESCAPE] = false;
-            Main.activeScreen = Main.Screen.MAIN_MENU;
+            Main.activeScreen = new MainMenu();
         }
     }
 }

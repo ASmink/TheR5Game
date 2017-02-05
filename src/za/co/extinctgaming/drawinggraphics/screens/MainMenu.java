@@ -14,7 +14,7 @@ import java.awt.event.MouseEvent;
 import java.awt.font.FontRenderContext;
 import java.awt.font.LineMetrics;
 
-public class MainMenu {
+public class MainMenu implements Screen {
     private MenuItem[] menuItems = new MenuItem[5];
 
     public MainMenu() {
@@ -25,6 +25,7 @@ public class MainMenu {
         menuItems[4] = new MenuItem(3, "Quit Game", false);
     }
 
+    @Override
     public void draw(JPanel panel, Graphics2D graphics2D) {
         graphics2D.setColor(CustomColors.MAIN_MENU_BACKGROUND_COLOR);
         graphics2D.fillRect(0, 0, panel.getWidth(), panel.getHeight());
@@ -59,6 +60,7 @@ public class MainMenu {
         }
     }
 
+    @Override
     public void update() {
         for (MenuItem menuItem : menuItems) {
             if (menuItem.getArea().contains(Mouse.mousePos)) {
@@ -98,7 +100,7 @@ public class MainMenu {
     private void executeAction(int itemID) {
         switch (itemID) {
             case 1:
-                Main.activeScreen = Main.Screen.LEVEL_ONE;
+                Main.activeScreen = new LevelOne();
                 break;
             case 2:
                 break;
@@ -106,10 +108,10 @@ public class MainMenu {
                 Main.running = false;
                 break;
             case 4:
-                Main.activeScreen = Main.Screen.OPTIONS;
+                Main.activeScreen = new Options();
                 break;
             case 5:
-                Main.activeScreen = Main.Screen.ABOUT;
+                Main.activeScreen = new About();
                 break;
         }
     }

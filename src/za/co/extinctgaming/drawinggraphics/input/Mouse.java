@@ -25,17 +25,17 @@ public class Mouse implements MouseListener, MouseMotionListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        System.out.println("Mouse Entered: " + e.getButton());
+
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        System.out.println("Mouse Exited: " + e.getButton());
+
     }
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        System.out.println("Mouse Dragged");
+
     }
 
     @Override
