@@ -5,6 +5,8 @@ import static za.co.extinctgaming.drawinggraphics.styling.CustomColors.*;
 
 import za.co.extinctgaming.drawinggraphics.input.Keyboard;
 import za.co.extinctgaming.drawinggraphics.input.Mouse;
+import za.co.extinctgaming.drawinggraphics.resources.Images;
+import za.co.extinctgaming.drawinggraphics.screens.About;
 import za.co.extinctgaming.drawinggraphics.screens.LevelOne;
 import za.co.extinctgaming.drawinggraphics.screens.MainMenu;
 import za.co.extinctgaming.drawinggraphics.screens.Options;
@@ -12,6 +14,7 @@ import za.co.extinctgaming.drawinggraphics.styling.CustomColors;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 import java.util.Locale;
 
 public class Main extends JPanel implements Runnable {
@@ -20,10 +23,12 @@ public class Main extends JPanel implements Runnable {
     public static final int GAME_VERSION_MINOR = 1;
     public static final int GAME_VERSION_BABY = 0;
 
+    public static Images images;
 
     public enum Screen {
         MAIN_MENU,
         OPTIONS,
+        ABOUT,
         LEVEL_ONE
     }
 
@@ -49,17 +54,29 @@ public class Main extends JPanel implements Runnable {
 
     private MainMenu mainMenu;
     private Options options;
+    private About about;
     private LevelOne levelOne;
 
     public Main() {
-        mainMenu = new MainMenu();
-        options = new Options();
-        levelOne = new LevelOne();
-
         running = true;
 
+        loadResources();
         createFrame();
         createThread();
+
+        mainMenu = new MainMenu();
+        options = new Options();
+        about = new About();
+        levelOne = new LevelOne();
+    }
+
+    private void loadResources() {
+        try {
+            images = new Images();
+        } catch (IOException e) {
+            System.err.println("Could not Load Resources: " + e.getMessage());
+            System.exit(1);
+        }
     }
 
     private void createFrame() {
@@ -93,6 +110,9 @@ public class Main extends JPanel implements Runnable {
             case OPTIONS:
                 options.update();
                 break;
+            case ABOUT:
+                about.update();
+                break;
             case LEVEL_ONE:
                 levelOne.update();
                 break;
@@ -114,6 +134,9 @@ public class Main extends JPanel implements Runnable {
                 break;
             case OPTIONS:
                 options.draw(this, graphics2D);
+                break;
+            case ABOUT:
+                about.draw(this, graphics2D);
                 break;
             case LEVEL_ONE:
                 levelOne.draw(this, graphics2D);

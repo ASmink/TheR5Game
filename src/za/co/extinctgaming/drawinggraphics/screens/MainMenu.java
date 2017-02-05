@@ -3,6 +3,7 @@ package za.co.extinctgaming.drawinggraphics.screens;
 import za.co.extinctgaming.drawinggraphics.Main;
 import za.co.extinctgaming.drawinggraphics.input.Keyboard;
 import za.co.extinctgaming.drawinggraphics.input.Mouse;
+import za.co.extinctgaming.drawinggraphics.resources.Images;
 import za.co.extinctgaming.drawinggraphics.styling.CustomColors;
 import za.co.extinctgaming.drawinggraphics.styling.CustomFonts;
 
@@ -14,13 +15,14 @@ import java.awt.font.FontRenderContext;
 import java.awt.font.LineMetrics;
 
 public class MainMenu {
-    private MenuItem[] menuItems = new MenuItem[4];
+    private MenuItem[] menuItems = new MenuItem[5];
 
     public MainMenu() {
         menuItems[0] = new MenuItem(1, "New Game", true);
         menuItems[1] = new MenuItem(2, "Resume Game", false);
         menuItems[2] = new MenuItem(4, "Options", false);
-        menuItems[3] = new MenuItem(3, "Quit Game", false);
+        menuItems[3] = new MenuItem(5, "About", false);
+        menuItems[4] = new MenuItem(3, "Quit Game", false);
     }
 
     public void draw(JPanel panel, Graphics2D graphics2D) {
@@ -32,24 +34,27 @@ public class MainMenu {
         int text_start_point = (panel.getWidth() / 2) - (graphics2D.getFontMetrics().stringWidth(Main.GAME_NAME) / 2);
         graphics2D.drawString(Main.GAME_NAME, text_start_point, 150);
 
-        int itemYPos = 250;
-        for (int i = 0; i < menuItems.length; i++) {
-            if (menuItems[i].isItemSelected()) {
+        int itemYPos = 280;
+        for (MenuItem menuItem : menuItems) {
+            if (menuItem.isItemSelected()) {
                 graphics2D.setColor(CustomColors.MAIN_MENU_SELECTED_ITEM_FOREGROUND_COLOR);
-                graphics2D.setFont(CustomFonts.MAIN_MENU_SELECTED_ITEM_FONT);
+                graphics2D.setFont(CustomFonts.MAIN_MENU_HOVER_ITEM_FONT);
             } else {
                 graphics2D.setColor(CustomColors.MAIN_MENU_ITEM_FOREGROUND_COLOR);
                 graphics2D.setFont(CustomFonts.MAIN_MENU_ITEM_FONT);
             }
 
             FontRenderContext context = graphics2D.getFontRenderContext();
-            LineMetrics ln = CustomFonts.MAIN_MENU_SELECTED_ITEM_FONT.getLineMetrics(menuItems[i].getItemName(), context);
-            int itemWidth = graphics2D.getFontMetrics().stringWidth(menuItems[i].getItemName());
+            LineMetrics ln = CustomFonts.MAIN_MENU_HOVER_ITEM_FONT.getLineMetrics(menuItem.getItemName(), context);
+            int itemWidth = graphics2D.getFontMetrics().stringWidth(menuItem.getItemName());
             int itemHeight = (int) (ln.getAscent() + ln.getDescent());
 
-            menuItems[i].setArea(new Rectangle(text_start_point, (itemYPos - (itemHeight / 2)) + (int) ln.getDescent(), itemWidth, itemHeight));
+            if (menuItem.isItemSelected()) {
+                graphics2D.drawImage(Main.images.getImage(Images.ImageNames.R5_COIN_FRONT_64_64), text_start_point - 70, itemYPos - (itemHeight - (int) ln.getDescent()), null);
+            }
+            menuItem.setArea(new Rectangle(text_start_point, (itemYPos - (itemHeight / 2)) + (int) ln.getDescent(), itemWidth, itemHeight));
 
-            graphics2D.drawString(menuItems[i].getItemName(), text_start_point, itemYPos);
+            graphics2D.drawString(menuItem.getItemName(), text_start_point, itemYPos);
             itemYPos += 70;
         }
     }
@@ -102,6 +107,9 @@ public class MainMenu {
                 break;
             case 4:
                 Main.activeScreen = Main.Screen.OPTIONS;
+                break;
+            case 5:
+                Main.activeScreen = Main.Screen.ABOUT;
                 break;
         }
     }
