@@ -25,6 +25,10 @@ public class Keyboard implements KeyListener {
             Main.debug = !Main.debug;
         }
 
+        if (e.getKeyCode() == KeyEvent.VK_PAUSE) {
+            Main.paused = !Main.paused;
+        }
+
         try {
             keys[e.getKeyCode()] = true;
         } catch (ArrayIndexOutOfBoundsException ex) {

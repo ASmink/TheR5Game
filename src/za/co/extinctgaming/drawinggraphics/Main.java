@@ -25,6 +25,7 @@ public class Main extends JPanel implements Runnable {
     public static boolean debug = false;
     public static Screen activeScreen = null;
     public static boolean running;
+    public static boolean paused;
 
     private int window_width = 1280;
     private int window_height = 720;
@@ -44,12 +45,13 @@ public class Main extends JPanel implements Runnable {
 
     private Main() {
         running = true;
+        paused = false;
 
         loadResources();
         createFrame();
         createThread();
 
-        activeScreen = new MainMenu();
+        activeScreen = new MainMenu(this);
     }
 
     private void loadResources() {
@@ -95,11 +97,11 @@ public class Main extends JPanel implements Runnable {
         graphics2D.setColor(Color.BLACK);
         graphics.fillRect(0, 0, getWidth(), getHeight());
 
-        activeScreen.draw(this, graphics2D);
+        activeScreen.draw(graphics2D);
 
         if (debug) {
             graphics2D.setColor(CustomColors.DEBUG_BACKGROUND_COLOR);
-            graphics2D.fillRect(5, 5, 170, 57);
+            graphics2D.fillRect(5, 5, 170, 69);
 
             graphics2D.setFont(DEBUG_FONT);
             graphics2D.setColor(DEBUG_FOREGROUND_COLOR);
@@ -109,11 +111,18 @@ public class Main extends JPanel implements Runnable {
             String formattedTickRate = "TICK RATE: " + String.format("%,d", ticksCountAvg);
             String formattedMousePos = "MOUSE X-POS: " + (int) Mouse.mousePos.getX() + ", Y-POS: " + (int) Mouse.mousePos.getY();
             String formattedGameVersion = "VERSION: " + GAME_VERSION_MAJOR + "." + GAME_VERSION_MINOR + "." + GAME_VERSION_BABY;
+            String formattedGameState;
+            if (paused) {
+                formattedGameState = "GAME STATE: PAUSED";
+            } else {
+                formattedGameState = "GAME STATE: RUNNING";
+            }
 
             graphics2D.drawString(formattedFPS, 10, 20);
             graphics2D.drawString(formattedTickRate, 10, 32);
             graphics2D.drawString(formattedMousePos, 10, 44);
             graphics2D.drawString(formattedGameVersion, 10, 56);
+            graphics2D.drawString(formattedGameState, 10, 68);
         }
     }
 
@@ -135,7 +144,9 @@ public class Main extends JPanel implements Runnable {
                     ticksCountAvg = ticksCount;
                     ticksCount = 0;
                 }
-                update();
+                if (!paused) {
+                    update();
+                }
                 delta--;
             }
 

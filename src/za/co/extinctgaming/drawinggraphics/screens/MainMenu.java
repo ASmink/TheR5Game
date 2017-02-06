@@ -1,11 +1,12 @@
 package za.co.extinctgaming.drawinggraphics.screens;
 
+import static za.co.extinctgaming.drawinggraphics.styling.CustomColors.*;
+import static za.co.extinctgaming.drawinggraphics.styling.CustomFonts.*;
+
 import za.co.extinctgaming.drawinggraphics.Main;
 import za.co.extinctgaming.drawinggraphics.input.Keyboard;
 import za.co.extinctgaming.drawinggraphics.input.Mouse;
 import za.co.extinctgaming.drawinggraphics.resources.Images;
-import za.co.extinctgaming.drawinggraphics.styling.CustomColors;
-import za.co.extinctgaming.drawinggraphics.styling.CustomFonts;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,7 +18,12 @@ import java.awt.font.LineMetrics;
 public class MainMenu implements Screen {
     private MenuItem[] menuItems = new MenuItem[5];
 
-    public MainMenu() {
+    private JPanel panel;
+
+    public MainMenu(JPanel panel) {
+        this.panel = panel;
+        panel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+
         menuItems[0] = new MenuItem(1, "New Game", true);
         menuItems[1] = new MenuItem(2, "Resume Game", false);
         menuItems[2] = new MenuItem(4, "Options", false);
@@ -26,27 +32,27 @@ public class MainMenu implements Screen {
     }
 
     @Override
-    public void draw(JPanel panel, Graphics2D graphics2D) {
-        graphics2D.setColor(CustomColors.MAIN_MENU_BACKGROUND_COLOR);
+    public void draw(Graphics2D graphics2D) {
+        graphics2D.setColor(MAIN_MENU_BACKGROUND_COLOR);
         graphics2D.fillRect(0, 0, panel.getWidth(), panel.getHeight());
 
-        graphics2D.setColor(CustomColors.MAIN_MENU_TITLE_FOREGROUND_COLOR);
-        graphics2D.setFont(CustomFonts.MAIN_MENU_TITLE_FONT);
+        graphics2D.setColor(MAIN_MENU_TITLE_FOREGROUND_COLOR);
+        graphics2D.setFont(MAIN_MENU_TITLE_FONT);
         int text_start_point = (panel.getWidth() / 2) - (graphics2D.getFontMetrics().stringWidth(Main.GAME_NAME) / 2);
         graphics2D.drawString(Main.GAME_NAME, text_start_point, 150);
 
         int itemYPos = 280;
         for (MenuItem menuItem : menuItems) {
             if (menuItem.isItemSelected()) {
-                graphics2D.setColor(CustomColors.MAIN_MENU_SELECTED_ITEM_FOREGROUND_COLOR);
-                graphics2D.setFont(CustomFonts.MAIN_MENU_HOVER_ITEM_FONT);
+                graphics2D.setColor(MAIN_MENU_SELECTED_ITEM_FOREGROUND_COLOR);
+                graphics2D.setFont(MAIN_MENU_HOVER_ITEM_FONT);
             } else {
-                graphics2D.setColor(CustomColors.MAIN_MENU_ITEM_FOREGROUND_COLOR);
-                graphics2D.setFont(CustomFonts.MAIN_MENU_ITEM_FONT);
+                graphics2D.setColor(MAIN_MENU_ITEM_FOREGROUND_COLOR);
+                graphics2D.setFont(MAIN_MENU_ITEM_FONT);
             }
 
             FontRenderContext context = graphics2D.getFontRenderContext();
-            LineMetrics ln = CustomFonts.MAIN_MENU_HOVER_ITEM_FONT.getLineMetrics(menuItem.getItemName(), context);
+            LineMetrics ln = MAIN_MENU_HOVER_ITEM_FONT.getLineMetrics(menuItem.getItemName(), context);
             int itemWidth = graphics2D.getFontMetrics().stringWidth(menuItem.getItemName());
             int itemHeight = (int) (ln.getAscent() + ln.getDescent());
 
@@ -100,7 +106,7 @@ public class MainMenu implements Screen {
     private void executeAction(int itemID) {
         switch (itemID) {
             case 1:
-                Main.activeScreen = new LevelOne();
+                Main.activeScreen = new LevelOne(panel);
                 break;
             case 2:
                 break;
@@ -108,10 +114,10 @@ public class MainMenu implements Screen {
                 Main.running = false;
                 break;
             case 4:
-                Main.activeScreen = new Options();
+                Main.activeScreen = new Options(panel);
                 break;
             case 5:
-                Main.activeScreen = new About();
+                Main.activeScreen = new About(panel);
                 break;
         }
     }
