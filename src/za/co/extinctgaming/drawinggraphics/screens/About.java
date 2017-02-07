@@ -41,11 +41,11 @@ public class About implements Screen {
         graphics2D.setFont(ABOUT_VALUE_FONT);
 
         String formattedVersion = Main.GAME_VERSION_MAJOR + "." + Main.GAME_VERSION_MINOR + "." + Main.GAME_VERSION_BABY;
-        graphics2D.drawString(formattedVersion, 1080 - graphics2D.getFontMetrics().stringWidth(formattedVersion), 280);
-        graphics2D.drawString("André Smink", 1080 - graphics2D.getFontMetrics().stringWidth("André Smink"), 350);
-        graphics2D.drawString("André Smink", 1080 - graphics2D.getFontMetrics().stringWidth("André Smink"), 400);
-        graphics2D.drawString("André Smink", 1080 - graphics2D.getFontMetrics().stringWidth("André Smink"), 450);
-        graphics2D.drawString("André Smink", 1080 - graphics2D.getFontMetrics().stringWidth("André Smink"), 500);
+        graphics2D.drawString(formattedVersion, panel.getWidth() - graphics2D.getFontMetrics().stringWidth(formattedVersion) - 200, 280);
+        graphics2D.drawString("André Smink", panel.getWidth() - graphics2D.getFontMetrics().stringWidth("André Smink") - 200, 350);
+        graphics2D.drawString("André Smink", panel.getWidth() - graphics2D.getFontMetrics().stringWidth("André Smink") - 200, 400);
+        graphics2D.drawString("André Smink", panel.getWidth() - graphics2D.getFontMetrics().stringWidth("André Smink") - 200, 450);
+        graphics2D.drawString("André Smink", panel.getWidth() - graphics2D.getFontMetrics().stringWidth("André Smink") - 200, 500);
     }
 
     public void update() {

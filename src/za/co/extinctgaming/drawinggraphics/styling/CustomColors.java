@@ -32,5 +32,5 @@ public class CustomColors {
 
     // Object Colors
     // Level One:
-    public static Color LEVEL_ONE_CHAR_COLOR = new Color(7, 255, 0, 255);
+    public static Color LEVEL_ONE_CHAR_COLOR = new Color(251, 255, 0, 255);
 }

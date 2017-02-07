@@ -47,6 +47,10 @@ public class Main extends JPanel implements Runnable {
         running = true;
         paused = false;
 
+        Mouse mouse = new Mouse();
+        this.addMouseListener(mouse);
+        this.addMouseMotionListener(mouse);
+
         loadResources();
         createFrame();
         createThread();
@@ -66,17 +70,14 @@ public class Main extends JPanel implements Runnable {
     private void createFrame() {
         frame = new JFrame();
 
-        Mouse mouse = new Mouse();
         Keyboard keyboard = new Keyboard();
         frame.addKeyListener(keyboard);
-        frame.addMouseListener(mouse);
-        frame.addMouseMotionListener(mouse);
 
         frame.getContentPane().add(this);
 
         frame.setSize(window_width, window_height);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setResizable(false);
+        frame.setResizable(true);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
