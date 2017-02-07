@@ -77,7 +77,7 @@ public class Main extends JPanel implements Runnable {
 
         frame.setSize(window_width, window_height);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setResizable(true);
+        frame.setResizable(false);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }

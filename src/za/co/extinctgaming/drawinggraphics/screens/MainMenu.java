@@ -6,6 +6,7 @@ import static za.co.extinctgaming.drawinggraphics.styling.CustomFonts.*;
 import za.co.extinctgaming.drawinggraphics.Main;
 import za.co.extinctgaming.drawinggraphics.input.Keyboard;
 import za.co.extinctgaming.drawinggraphics.input.Mouse;
+import za.co.extinctgaming.drawinggraphics.levels.LevelOne;
 import za.co.extinctgaming.drawinggraphics.resources.Images;
 
 import javax.swing.*;
@@ -59,8 +60,7 @@ public class MainMenu implements Screen {
             if (menuItem.isItemSelected()) {
                 graphics2D.drawImage(Main.images.getImage(Images.ImageNames.R5_COIN_FRONT_64_64), text_start_point - 70, itemYPos - (itemHeight - (int) ln.getDescent()), null);
             }
-            menuItem.setArea(new Rectangle(text_start_point, (itemYPos - (itemHeight / 2)) + (int) ln.getDescent(), itemWidth, itemHeight));
-
+            menuItem.setArea(new Rectangle(text_start_point, (itemYPos - itemHeight) + (int) ln.getDescent(), itemWidth, itemHeight));
             graphics2D.drawString(menuItem.getItemName(), text_start_point, itemYPos);
             itemYPos += 70;
         }
@@ -106,7 +106,8 @@ public class MainMenu implements Screen {
     private void executeAction(int itemID) {
         switch (itemID) {
             case 1:
-                Main.activeScreen = new Game(panel);
+                Screen game = new Game(panel, new LevelOne());
+                Main.activeScreen = game;
                 break;
             case 2:
                 break;
