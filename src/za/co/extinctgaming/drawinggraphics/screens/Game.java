@@ -25,6 +25,7 @@ public class Game implements Screen {
     private Polygon topWall;
     private Polygon bottomWall;
     private Rectangle character;
+    private Rectangle finnish;
 
 
     int[] xPointsTop = {0, 0, 130, 130, 445, 445, 760, 760, 1280, 1280};
@@ -37,22 +38,15 @@ public class Game implements Screen {
     int characterYPos = 345;
 
     private boolean boom = false;
-
-    private Robot robot;
+    private boolean yeay = false;
 
     public Game(JPanel panel) {
-        try {
-            robot = new Robot();
-            robot.mouseMove(0, 350);
-        } catch (AWTException e) {
-            e.printStackTrace();
-        }
-
         this.panel = panel;
-        //panel.setCursor(BLANK_CURSOR);
+        panel.setCursor(BLANK_CURSOR);
         topWall = new Polygon(xPointsTop, yPointsTop, xPointsTop.length);
         bottomWall = new Polygon(xPointsBotttom, yPointsBotttom, xPointsBotttom.length);
-        character = new Rectangle(characterXPos, characterYPos, 50, 50);
+        character = new Rectangle(characterXPos, characterYPos, 40, 40);
+        finnish = new Rectangle(1220, 120, 50, 60);
         //System.out.println(character.getX);
     }
 
@@ -71,6 +65,11 @@ public class Game implements Screen {
             graphics2D.setFont(LEVEL_TITLE_FONT);
             int text_start_point = (panel.getWidth() / 2) - (graphics2D.getFontMetrics().stringWidth("BOOOM") / 2);
             graphics2D.drawString("BOOOM", text_start_point, 350);
+        } else if (yeay) {
+            graphics2D.setColor(LEVEL_TITLE_FOREGROUND_COLOR);
+            graphics2D.setFont(LEVEL_TITLE_FONT);
+            int text_start_point = (panel.getWidth() / 2) - (graphics2D.getFontMetrics().stringWidth("LEVEL ONE COMPLETE") / 2);
+            graphics2D.drawString("LEVEL ONE COMPLETE", text_start_point, 350);
         } else {
 
             graphics2D.setColor(Color.cyan);
@@ -82,7 +81,16 @@ public class Game implements Screen {
                 graphics2D.fill(bottomWall);
             }
             graphics2D.setColor(LEVEL_ONE_CHAR_COLOR);
-            graphics2D.fill(character);
+            if (character != null) {
+                character.x = (int) Mouse.mousePos.getX() - 20;
+                character.y = (int) Mouse.mousePos.getY() - 20;
+                graphics2D.fill(character);
+            }
+
+            graphics2D.setColor(Color.magenta);
+            if (finnish != null) {
+                graphics2D.fill(finnish);
+            }
         }
     }
 
@@ -99,6 +107,10 @@ public class Game implements Screen {
         if (character.contains(Mouse.mousePos) && Mouse.mouseButtons[MouseEvent.BUTTON1]) {
             character.x = (int) Mouse.mousePos.getX();
             character.y = (int) Mouse.mousePos.getY();
+        }
+
+        if (character.intersects(finnish)) {
+            yeay = true;
         }
 
         if (Keyboard.keys[KeyEvent.VK_W]) {
