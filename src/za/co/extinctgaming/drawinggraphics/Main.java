@@ -98,7 +98,9 @@ public class Main extends JPanel implements Runnable {
         graphics2D.setColor(Color.BLACK);
         graphics.fillRect(0, 0, getWidth(), getHeight());
 
-        activeScreen.draw(graphics2D);
+        if (activeScreen != null) {
+            activeScreen.draw(graphics2D);
+        }
 
         if (debug) {
             graphics2D.setColor(CustomColors.DEBUG_BACKGROUND_COLOR);
@@ -113,6 +115,7 @@ public class Main extends JPanel implements Runnable {
             String formattedMousePos = "MOUSE X-POS: " + (int) Mouse.mousePos.getX() + ", Y-POS: " + (int) Mouse.mousePos.getY();
             String formattedGameVersion = "VERSION: " + GAME_VERSION_MAJOR + "." + GAME_VERSION_MINOR + "." + GAME_VERSION_BABY;
             String formattedGameState;
+
             if (paused) {
                 formattedGameState = "GAME STATE: PAUSED";
             } else {

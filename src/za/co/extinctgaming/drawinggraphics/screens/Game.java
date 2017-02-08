@@ -15,6 +15,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class Game implements Screen {
 
@@ -22,6 +24,8 @@ public class Game implements Screen {
 
     private JPanel panel;
     private Level level;
+    private long levelStartTimestamp;
+    private long levelDuration;
 
     public Game(JPanel panel, Level level) {
         this.panel = panel;
@@ -70,6 +74,11 @@ public class Game implements Screen {
                 int text_start_point = (panel.getWidth() / 2) - (graphics2D.getFontMetrics().stringWidth(endMessage) / 2);
                 graphics2D.drawString(endMessage, text_start_point, 350);
             }
+
+            graphics2D.setColor(Color.BLACK);
+            graphics2D.setFont(DEBUG_FONT);
+            String formattedDuration = String.format("%02d", (levelDuration / 1000) / 60) + ":" + String.format("%02d", (levelDuration / 1000) % 60);
+            graphics2D.drawString(formattedDuration, 100, 20);
         }
     }
 
@@ -80,11 +89,13 @@ public class Game implements Screen {
         }
 
         if (level.getCharacter().contains(Mouse.mousePos.getX(), Mouse.mousePos.getY()) && Mouse.mouseButtons[MouseEvent.BUTTON1]) {
+            levelStartTimestamp = System.currentTimeMillis();
             level.setActive(true);
         }
 
         if (level.isActive()) {
             panel.setCursor(BLANK_CURSOR);
+            levelDuration = System.currentTimeMillis() - levelStartTimestamp;
         } else {
             panel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
         }
