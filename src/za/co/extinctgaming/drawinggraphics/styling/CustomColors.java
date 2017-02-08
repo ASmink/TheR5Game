@@ -17,8 +17,11 @@ public class CustomColors {
     public static Color ABOUT_KEY_FOREGROUND_COLOR = new Color(192, 192, 192, 255);
     public static Color ABOUT_VALUE_FOREGROUND_COLOR = new Color(255, 215, 0, 255);
     public static Color ABOUT_BACK_BUTTON_FOREGROUND_COLOR = new Color(165, 0, 1, 255);
-    // Levels:
-    public static Color LEVEL_TITLE_FOREGROUND_COLOR = new Color(255, 245, 0, 255);
+    // Game:
+    public static Color LEVEL_TITLE_FOREGROUND_COLOR = new Color(255, 255, 255, 255);
+    public static Color LEVEL_FAILED_FOREGROUND_COLOR = new Color(255, 255, 255, 255);
+    public static Color LEVEL_COMPLETED_FOREGROUND_COLOR = new Color(255, 255, 255, 255);
+    public static Color LEVEL_TIMER_FOREGROUND_COLOR = new Color(255, 0, 8, 255);
 
     // Background Colors
     // General:
@@ -27,10 +30,14 @@ public class CustomColors {
     public static Color MAIN_MENU_BACKGROUND_COLOR = new Color(0, 1, 122, 255);
     // About:
     public static Color ABOUT_BACKGROUND_COLOR = new Color(0, 1, 122, 255);
-    // Level One:
-    public static Color LEVEL_ONE_BACKGROUND_COLOR = new Color(122, 34, 117, 255);
+    // Game:
+    public static Color LEVEL_BACKGROUND_COLOR = new Color(0, 68, 122, 255);
+    public static Color LEVEL_TITLE_BACKGROUND_COLOR = new Color(120, 0, 122, 255);
+    public static Color FAILED_BACKGROUND_COLOR = new Color(122, 0, 6, 255);
+    public static Color COMPLETED_BACKGROUND_COLOR = new Color(0, 122, 1, 255);
 
     // Object Colors
-    // Level One:
-    public static Color LEVEL_ONE_CHAR_COLOR = new Color(251, 255, 0, 255);
+    public static Color CHAR_COLOR = new Color(255, 96, 0, 255);
+    public static Color WALL_COLOR = new Color(0, 255, 178, 255);
+    public static Color FINNISH_COLOR = new Color(24, 255, 0, 255);
 }

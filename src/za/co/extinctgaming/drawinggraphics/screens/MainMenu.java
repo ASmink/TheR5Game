@@ -17,7 +17,7 @@ import java.awt.font.FontRenderContext;
 import java.awt.font.LineMetrics;
 
 public class MainMenu implements Screen {
-    private MenuItem[] menuItems = new MenuItem[5];
+    private MenuItem[] menuItems = new MenuItem[6];
 
     private JPanel panel;
 
@@ -27,9 +27,10 @@ public class MainMenu implements Screen {
 
         menuItems[0] = new MenuItem(1, "New Game", true);
         menuItems[1] = new MenuItem(2, "Resume Game", false);
-        menuItems[2] = new MenuItem(4, "Options", false);
-        menuItems[3] = new MenuItem(5, "About", false);
-        menuItems[4] = new MenuItem(3, "Quit Game", false);
+        menuItems[2] = new MenuItem(6, "High Scores", false);
+        menuItems[3] = new MenuItem(4, "Options", false);
+        menuItems[4] = new MenuItem(5, "About", false);
+        menuItems[5] = new MenuItem(3, "Quit Game", false);
     }
 
     @Override
@@ -42,7 +43,7 @@ public class MainMenu implements Screen {
         int text_start_point = (panel.getWidth() / 2) - (graphics2D.getFontMetrics().stringWidth(Main.GAME_NAME) / 2);
         graphics2D.drawString(Main.GAME_NAME, text_start_point, 150);
 
-        int itemYPos = 280;
+        int itemYPos = 260;
         for (MenuItem menuItem : menuItems) {
             if (menuItem.isItemSelected()) {
                 graphics2D.setColor(MAIN_MENU_SELECTED_ITEM_FOREGROUND_COLOR);
@@ -84,7 +85,13 @@ public class MainMenu implements Screen {
             }
         }
 
+        if (Keyboard.keys[KeyEvent.VK_F4]) {
+            Keyboard.keys[KeyEvent.VK_F4] = false;
+            Main.activeScreen = new WallDebug(panel);
+        }
+
         if (Keyboard.keys[KeyEvent.VK_ESCAPE]) {
+            Keyboard.keys[KeyEvent.VK_ESCAPE] = false;
             Main.running = false;
         }
 
@@ -99,6 +106,7 @@ public class MainMenu implements Screen {
         }
 
         if (Keyboard.keys[KeyEvent.VK_ENTER]) {
+            Keyboard.keys[KeyEvent.VK_ENTER] = false;
             executeAction(getCurrentSelectedItem().getId());
         }
     }
@@ -119,6 +127,8 @@ public class MainMenu implements Screen {
                 break;
             case 5:
                 Main.activeScreen = new About(panel);
+                break;
+            case 6:
                 break;
         }
     }

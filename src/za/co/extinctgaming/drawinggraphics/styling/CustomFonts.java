@@ -17,7 +17,8 @@ public class CustomFonts {
     public static Font ABOUT_VALUE_FONT = new Font("Britannic Bold", Font.PLAIN, 50);
     public static Font ABOUT_BACK_BUTTON_FONT = new Font("Britannic Bold", Font.PLAIN, 60);
     public static Font ABOUT_HOVER_BACK_BUTTON_FONT = new Font("Britannic Bold", Font.BOLD, 60);
-    // Levels
+    // Game
     public static Font LEVEL_TITLE_FONT = new Font("Algerian", Font.PLAIN, 60);
+    public static Font LEVEL_TIMER_FONT = new Font("Arial Narrow", Font.BOLD, 21);
 
 }
