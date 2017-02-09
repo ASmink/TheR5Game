@@ -61,7 +61,12 @@ public class Game implements Screen {
                 graphics2D.setFont(LEVEL_TITLE_FONT);
                 String failedMessage = level.getLevelName() + " FAILED";
                 int text_start_point = (panel.getWidth() / 2) - (graphics2D.getFontMetrics().stringWidth(failedMessage) / 2);
-                graphics2D.drawString(failedMessage, text_start_point, 350);
+                graphics2D.drawString(failedMessage, text_start_point, 300);
+
+                graphics2D.setFont(LEVEL_TITLE_FONT);
+                String spaceMessage = "PRESS SPACE TO RETRY";
+                text_start_point = (panel.getWidth() / 2) - (graphics2D.getFontMetrics().stringWidth(spaceMessage) / 2);
+                graphics2D.drawString(spaceMessage, text_start_point, 400);
             }
 
             if (level.isGoalReached()) {
@@ -71,7 +76,12 @@ public class Game implements Screen {
                 graphics2D.setFont(LEVEL_TITLE_FONT);
                 String endMessage = level.getLevelName() + " COMPLETE";
                 int text_start_point = (panel.getWidth() / 2) - (graphics2D.getFontMetrics().stringWidth(endMessage) / 2);
-                graphics2D.drawString(endMessage, text_start_point, 350);
+                graphics2D.drawString(endMessage, text_start_point, 300);
+
+                graphics2D.setFont(LEVEL_TITLE_FONT);
+                String spaceMessage = "PRESS SPACE TO CONTINUE";
+                text_start_point = (panel.getWidth() / 2) - (graphics2D.getFontMetrics().stringWidth(spaceMessage) / 2);
+                graphics2D.drawString(spaceMessage, text_start_point, 400);
             }
 
             graphics2D.setColor(LEVEL_TIMER_FOREGROUND_COLOR);
@@ -117,9 +127,7 @@ public class Game implements Screen {
             if (level.isWallTouched()) {
                 try {
                     Main.activeScreen = new Game(panel, level.getClass().newInstance());
-                } catch (InstantiationException e) {
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
+                } catch (InstantiationException | IllegalAccessException e) {
                     e.printStackTrace();
                 }
             } else if (level.isGoalReached()) {
