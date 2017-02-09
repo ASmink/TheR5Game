@@ -114,7 +114,7 @@ public class MainMenu implements Screen {
     private void executeAction(int itemID) {
         switch (itemID) {
             case 1:
-                Screen game = new Game(panel, new LevelOne());
+                Screen game = new Game(panel);
                 Main.activeScreen = game;
                 break;
             case 2:

@@ -3,6 +3,7 @@ package za.co.extinctgaming.drawinggraphics;
 import static za.co.extinctgaming.drawinggraphics.styling.CustomFonts.*;
 import static za.co.extinctgaming.drawinggraphics.styling.CustomColors.*;
 
+import za.co.extinctgaming.drawinggraphics.core.GameState;
 import za.co.extinctgaming.drawinggraphics.input.Keyboard;
 import za.co.extinctgaming.drawinggraphics.input.Mouse;
 import za.co.extinctgaming.drawinggraphics.resources.Images;
@@ -26,6 +27,7 @@ public class Main extends JPanel implements Runnable {
     public static Screen activeScreen = null;
     public static boolean running;
     public static boolean paused;
+    public static GameState gameState = new GameState();
 
     private int window_width = 1280;
     private int window_height = 720;
