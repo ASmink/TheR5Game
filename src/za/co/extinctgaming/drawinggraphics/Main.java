@@ -27,7 +27,6 @@ public class Main extends JPanel implements Runnable {
     public static Screen activeScreen = null;
     public static boolean running;
     public static boolean paused;
-    public static GameState gameState = new GameState();
 
     private int window_width = 1280;
     private int window_height = 720;
@@ -90,7 +89,9 @@ public class Main extends JPanel implements Runnable {
     }
 
     private void update() {
-        activeScreen.update();
+        if (activeScreen != null) {
+            activeScreen.update();
+        }
     }
 
     public void paint(Graphics graphics) {

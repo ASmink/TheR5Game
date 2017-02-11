@@ -6,7 +6,6 @@ import static za.co.extinctgaming.drawinggraphics.styling.CustomFonts.*;
 import za.co.extinctgaming.drawinggraphics.Main;
 import za.co.extinctgaming.drawinggraphics.input.Keyboard;
 import za.co.extinctgaming.drawinggraphics.input.Mouse;
-import za.co.extinctgaming.drawinggraphics.levels.LevelOne;
 import za.co.extinctgaming.drawinggraphics.resources.Images;
 
 import javax.swing.*;
@@ -85,11 +84,6 @@ public class MainMenu implements Screen {
             }
         }
 
-        if (Keyboard.keys[KeyEvent.VK_F4]) {
-            Keyboard.keys[KeyEvent.VK_F4] = false;
-            Main.activeScreen = new WallDebug(panel);
-        }
-
         if (Keyboard.keys[KeyEvent.VK_ESCAPE]) {
             Keyboard.keys[KeyEvent.VK_ESCAPE] = false;
             Main.running = false;
@@ -129,6 +123,7 @@ public class MainMenu implements Screen {
                 Main.activeScreen = new About(panel);
                 break;
             case 6:
+                Main.activeScreen = new HighScores(panel);
                 break;
         }
     }
