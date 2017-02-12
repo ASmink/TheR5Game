@@ -1,5 +1,6 @@
 package za.co.extinctgaming.drawinggraphics;
 
+import za.co.extinctgaming.drawinggraphics.core.GameState;
 import za.co.extinctgaming.drawinggraphics.input.Keyboard;
 import za.co.extinctgaming.drawinggraphics.input.Mouse;
 import za.co.extinctgaming.drawinggraphics.resources.Images;
@@ -28,6 +29,8 @@ public class Main extends JPanel implements Runnable {
     public static boolean running;
     public static boolean paused;
 
+    private GameState state;
+
     private int window_width = 1280;
     private int window_height = 720;
 
@@ -44,9 +47,10 @@ public class Main extends JPanel implements Runnable {
     private int ticksCountAvg = 0;
     private long ticksTimer = 0;
 
-    private Main() {
-        running = true;
-        paused = false;
+    private Main(GameState state) {
+        this.running = true;
+        this.paused = false;
+        this.state = state;
 
         Mouse mouse = new Mouse();
         this.addMouseListener(mouse);
@@ -56,7 +60,7 @@ public class Main extends JPanel implements Runnable {
         createFrame();
         createThread();
 
-        activeScreen = new MainMenu(this);
+        activeScreen = new MainMenu(state, this);
     }
 
     private void loadResources() {
@@ -173,6 +177,7 @@ public class Main extends JPanel implements Runnable {
     }
 
     public static void main(String[] args) {
-        new Main();
+        GameState state = new GameState();
+        new Main(state);
     }
 }

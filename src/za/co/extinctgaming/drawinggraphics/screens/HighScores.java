@@ -12,11 +12,10 @@ import java.awt.event.KeyEvent;
 import static za.co.extinctgaming.drawinggraphics.styling.CustomColors.*;
 import static za.co.extinctgaming.drawinggraphics.styling.CustomFonts.*;
 
-public class HighScores implements Screen {
-    private JPanel panel;
+public class HighScores extends Screen {
 
-    public HighScores(JPanel panel) {
-        this.panel = panel;
+    public HighScores(GameState state, JPanel panel) {
+        super(state, panel);
     }
 
     @Override
@@ -27,8 +26,8 @@ public class HighScores implements Screen {
         graphics2D.setColor(HIGH_SCORE_LEVEL_FOREGROUND_COLOR);
         graphics2D.setFont(HIGH_SCORE_LEVEL_FONT);
         int yPos = 50;
-        for (int i = 0; i < GameState.getInstance().getHighscores().length; i++) {
-            graphics2D.drawString("LEVEL " + (i + 1) + ": " + PrettyPrint.prettyPrintDuration(GameState.getInstance().getHighscores()[i]), 20, yPos);
+        for (int i = 0; i < state.getHighScores().length; i++) {
+            graphics2D.drawString("LEVEL " + (i + 1) + ": " + PrettyPrint.prettyPrintDuration(state.getHighScores()[i]), 20, yPos);
             yPos += 50;
         }
     }
@@ -37,7 +36,7 @@ public class HighScores implements Screen {
     public void update() {
         if (Keyboard.keys[KeyEvent.VK_ESCAPE]) {
             Keyboard.keys[KeyEvent.VK_ESCAPE] = false;
-            Main.activeScreen = new MainMenu(panel);
+            Main.activeScreen = new MainMenu(state, panel);
         }
     }
 }
