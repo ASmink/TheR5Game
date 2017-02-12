@@ -7,6 +7,7 @@ import za.co.extinctgaming.drawinggraphics.resources.Images;
 import za.co.extinctgaming.drawinggraphics.screens.MainMenu;
 import za.co.extinctgaming.drawinggraphics.screens.Screen;
 import za.co.extinctgaming.drawinggraphics.styling.CustomColors;
+import za.co.extinctgaming.drawinggraphics.utils.SerializeObject;
 
 import javax.swing.*;
 import java.awt.*;
@@ -177,7 +178,17 @@ public class Main extends JPanel implements Runnable {
     }
 
     public static void main(String[] args) {
-        GameState state = new GameState();
+        Object gameStateObj = SerializeObject.deserializeFromFile();
+        GameState state;
+
+        if (gameStateObj == null) {
+            System.out.println("No Save File Found Creating Default Game State");
+            state = new GameState();
+        } else {
+            System.out.println("Loaded Saved Game State");
+            state = (GameState) gameStateObj;
+        }
+
         new Main(state);
     }
 }

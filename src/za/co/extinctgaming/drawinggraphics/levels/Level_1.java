@@ -3,8 +3,9 @@ package za.co.extinctgaming.drawinggraphics.levels;
 import za.co.extinctgaming.drawinggraphics.entities.Wall;
 
 import java.awt.*;
+import java.io.Serializable;
 
-public class Level_1 extends Level {
+public class Level_1 extends Level implements Serializable {
     public Level_1() {
         levelName = "LEVEL ONE";
         walls = new Wall[2];

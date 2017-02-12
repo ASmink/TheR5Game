@@ -5,6 +5,7 @@ import za.co.extinctgaming.drawinggraphics.core.GameState;
 import za.co.extinctgaming.drawinggraphics.entities.Wall;
 import za.co.extinctgaming.drawinggraphics.input.Keyboard;
 import za.co.extinctgaming.drawinggraphics.input.Mouse;
+import za.co.extinctgaming.drawinggraphics.utils.SerializeObject;
 
 import javax.swing.*;
 import java.awt.*;
@@ -96,6 +97,7 @@ public class Game extends Screen {
 
         if (state.getCurrentLevel().isGoalReached()) {
             state.saveScore();
+            SerializeObject.serializeToFile(state);
         }
 
         if (state.getCurrentLevel().getCharacter().contains(Mouse.mousePos.getX(), Mouse.mousePos.getY()) && Mouse.mouseButtons[MouseEvent.BUTTON1]) {

@@ -2,11 +2,9 @@ package za.co.extinctgaming.drawinggraphics.entities;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.Serializable;
 
-/**
- * Created by andre on 2017/02/06.
- */
-public class Wall {
+public class Wall implements Serializable {
     private Polygon polygon;
     private BufferedImage texture;
 

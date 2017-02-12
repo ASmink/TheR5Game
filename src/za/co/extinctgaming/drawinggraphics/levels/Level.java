@@ -3,9 +3,10 @@ package za.co.extinctgaming.drawinggraphics.levels;
 import za.co.extinctgaming.drawinggraphics.entities.Wall;
 
 import java.awt.*;
+import java.io.Serializable;
 
 
-public class Level {
+public class Level implements Serializable{
     protected String levelName;
     protected Wall[] walls;
     protected Rectangle character;
