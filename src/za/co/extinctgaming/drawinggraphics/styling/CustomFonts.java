@@ -21,5 +21,8 @@ public class CustomFonts {
     public static Font LEVEL_TITLE_FONT = new Font("Algerian", Font.PLAIN, 60);
     public static Font LEVEL_SUB_TITLE_FONT = new Font("Algerian", Font.PLAIN, 40);
     public static Font LEVEL_TIMER_FONT = new Font("Arial Narrow", Font.BOLD, 21);
-
+    // High Scores:
+    public static Font HIGH_SCORE_TITLE_FONT = new Font("Britannic Bold", Font.BOLD, 120);
+    public static Font HIGH_SCORE_LEVEL_FONT = new Font("Britannic Bold", Font.BOLD, 45);
+    public static Font HIGH_SCORE_DURATION_FONT = new Font("Britannic Bold", Font.PLAIN, 50);
 }

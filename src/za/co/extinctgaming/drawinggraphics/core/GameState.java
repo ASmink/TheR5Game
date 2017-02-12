@@ -2,7 +2,7 @@ package za.co.extinctgaming.drawinggraphics.core;
 
 import za.co.extinctgaming.drawinggraphics.levels.*;
 
-import java.io.Serializable;
+import java.io.*;
 
 public class GameState implements Serializable {
     private static GameState ourInstance = new GameState();

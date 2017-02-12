@@ -22,6 +22,11 @@ public class CustomColors {
     public static Color LEVEL_FAILED_FOREGROUND_COLOR = new Color(255, 255, 255, 255);
     public static Color LEVEL_COMPLETED_FOREGROUND_COLOR = new Color(255, 255, 255, 255);
     public static Color LEVEL_TIMER_FOREGROUND_COLOR = new Color(255, 0, 8, 255);
+    // High Scores
+    public static Color HIGH_SCORE_TITLE_FOREGROUND_COLOR = new Color(15, 172, 172, 255);
+    public static Color HIGH_SCORE_LEVEL_FOREGROUND_COLOR = new Color(192, 192, 192, 255);
+    public static Color HIGH_SCORE_DURATION_FOREGROUND_COLOR = new Color(255, 215, 0, 255);
+
 
     // Background Colors
     // General:
@@ -35,6 +40,8 @@ public class CustomColors {
     public static Color LEVEL_TITLE_BACKGROUND_COLOR = new Color(120, 0, 122, 255);
     public static Color FAILED_BACKGROUND_COLOR = new Color(122, 0, 6, 255);
     public static Color COMPLETED_BACKGROUND_COLOR = new Color(0, 122, 1, 255);
+    // High Scores:
+    public static Color HIGH_SCORE_BACKGROUND_COLOR = new Color(0, 1, 122, 255);
 
     // Object Colors
     public static Color CHAR_COLOR = new Color(255, 96, 0, 255);

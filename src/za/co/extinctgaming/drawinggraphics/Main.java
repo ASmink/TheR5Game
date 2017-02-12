@@ -1,19 +1,19 @@
 package za.co.extinctgaming.drawinggraphics;
 
-import static za.co.extinctgaming.drawinggraphics.styling.CustomFonts.*;
-import static za.co.extinctgaming.drawinggraphics.styling.CustomColors.*;
-
-import za.co.extinctgaming.drawinggraphics.core.GameState;
 import za.co.extinctgaming.drawinggraphics.input.Keyboard;
 import za.co.extinctgaming.drawinggraphics.input.Mouse;
 import za.co.extinctgaming.drawinggraphics.resources.Images;
-import za.co.extinctgaming.drawinggraphics.screens.*;
+import za.co.extinctgaming.drawinggraphics.screens.MainMenu;
+import za.co.extinctgaming.drawinggraphics.screens.Screen;
 import za.co.extinctgaming.drawinggraphics.styling.CustomColors;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.util.Locale;
+
+import static za.co.extinctgaming.drawinggraphics.styling.CustomColors.DEBUG_FOREGROUND_COLOR;
+import static za.co.extinctgaming.drawinggraphics.styling.CustomFonts.DEBUG_FONT;
 
 public class Main extends JPanel implements Runnable {
     public static final String GAME_NAME = "The R5 Game";
