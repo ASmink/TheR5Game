@@ -4,6 +4,7 @@ import static za.co.extinctgaming.drawinggraphics.styling.CustomColors.*;
 import static za.co.extinctgaming.drawinggraphics.styling.CustomFonts.*;
 
 import za.co.extinctgaming.drawinggraphics.Main;
+import za.co.extinctgaming.drawinggraphics.core.GameState;
 import za.co.extinctgaming.drawinggraphics.input.Keyboard;
 import za.co.extinctgaming.drawinggraphics.input.Mouse;
 import za.co.extinctgaming.drawinggraphics.resources.Images;
@@ -15,13 +16,11 @@ import java.awt.event.MouseEvent;
 import java.awt.font.FontRenderContext;
 import java.awt.font.LineMetrics;
 
-public class MainMenu implements Screen {
+public class MainMenu extends Screen {
     private MenuItem[] menuItems = new MenuItem[6];
 
-    private JPanel panel;
-
-    public MainMenu(JPanel panel) {
-        this.panel = panel;
+    public MainMenu(GameState state, JPanel panel) {
+        super(state, panel);
         panel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 
         menuItems[0] = new MenuItem(1, "New Game", true);
@@ -108,7 +107,7 @@ public class MainMenu implements Screen {
     private void executeAction(int itemID) {
         switch (itemID) {
             case 1:
-                Main.activeScreen = new Game(panel);
+                Main.activeScreen = new Game(state, panel);
                 break;
             case 2:
                 break;
@@ -116,13 +115,13 @@ public class MainMenu implements Screen {
                 Main.running = false;
                 break;
             case 4:
-                Main.activeScreen = new Options(panel);
+                Main.activeScreen = new Options(state, panel);
                 break;
             case 5:
-                Main.activeScreen = new About(panel);
+                Main.activeScreen = new About(state, panel);
                 break;
             case 6:
-                Main.activeScreen = new HighScores(panel);
+                Main.activeScreen = new HighScores(state, panel);
                 break;
         }
     }

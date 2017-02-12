@@ -5,19 +5,13 @@ import za.co.extinctgaming.drawinggraphics.levels.*;
 import java.io.*;
 
 public class GameState implements Serializable {
-    private static GameState ourInstance = new GameState();
-
-    public static GameState getInstance() {
-        return ourInstance;
-    }
-
     private Level[] levels;
-    private long[] highscores;
+    private long[] highScores;
     private int currentLevel;
 
-    private GameState() {
+    public GameState() {
         levels = new Level[2];
-        highscores = new long[2];
+        highScores = new long[2];
         currentLevel = 0;
 
         loadLevels();
@@ -30,8 +24,8 @@ public class GameState implements Serializable {
     }
 
     private void loadHighScores() {
-        highscores[0] = -1;
-        highscores[1] = -1;
+        highScores[0] = -1;
+        highScores[1] = -1;
     }
 
     public Level getCurrentLevel() {
@@ -54,12 +48,12 @@ public class GameState implements Serializable {
     }
 
     public void saveScore() {
-        if (highscores[currentLevel] == -1 || highscores[currentLevel] > levels[currentLevel].getDuration()) {
-            highscores[currentLevel] = levels[currentLevel].getDuration();
+        if (highScores[currentLevel] == -1 || highScores[currentLevel] > levels[currentLevel].getDuration()) {
+            highScores[currentLevel] = levels[currentLevel].getDuration();
         }
     }
 
-    public long[] getHighscores() {
-        return highscores;
+    public long[] getHighScores() {
+        return highScores;
     }
 }
