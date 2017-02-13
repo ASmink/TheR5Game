@@ -11,6 +11,7 @@ import za.co.extinctgaming.drawinggraphics.utils.SerializeObject;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.util.Locale;
 
@@ -22,6 +23,9 @@ public class Main extends JPanel implements Runnable {
     public static final int GAME_VERSION_MAJOR = 0;
     public static final int GAME_VERSION_MINOR = 1;
     public static final int GAME_VERSION_BABY = 0;
+    public static final String GAME_HOME_PATH = System.getProperty("user.home");
+    public static final String GAME_DIR_PATH = ".the_r5_game";
+    public static final String GAME_STATE_SERIALIZABLE_PATH = "GameState.dat";
 
     public static Images images;
 
@@ -178,6 +182,8 @@ public class Main extends JPanel implements Runnable {
     }
 
     public static void main(String[] args) {
+        new File(GAME_HOME_PATH + "\\" + GAME_DIR_PATH).mkdirs();
+
         Object gameStateObj = SerializeObject.deserializeFromFile();
         GameState state;
 

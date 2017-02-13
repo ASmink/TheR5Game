@@ -1,5 +1,7 @@
 package za.co.extinctgaming.drawinggraphics.utils;
 
+import za.co.extinctgaming.drawinggraphics.Main;
+
 import java.io.*;
 
 public class SerializeObject {
@@ -8,7 +10,7 @@ public class SerializeObject {
         FileOutputStream fileOutputStream = null;
         ObjectOutputStream objectOutputStream = null;
         try {
-            fileOutputStream = new FileOutputStream("game_state.ser");
+            fileOutputStream = new FileOutputStream(Main.GAME_HOME_PATH + "\\" + Main.GAME_DIR_PATH + "\\" + Main.GAME_STATE_SERIALIZABLE_PATH);
             objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(object);
         } catch (IOException e) {
@@ -38,7 +40,7 @@ public class SerializeObject {
         Object readObject = null;
 
         try {
-            fileInputStream = new FileInputStream("game_state.ser");
+            fileInputStream = new FileInputStream(Main.GAME_HOME_PATH + "\\" + Main.GAME_DIR_PATH + "\\" + Main.GAME_STATE_SERIALIZABLE_PATH);
             objectInputStream = new ObjectInputStream(fileInputStream);
             readObject = objectInputStream.readObject();
         } catch (IOException | ClassNotFoundException e) {

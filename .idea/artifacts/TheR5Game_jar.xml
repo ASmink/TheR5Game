@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="TheR5Game:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/TheR5Game_jar</output-path>
+    <root id="archive" name="TheR5Game.jar">
+      <element id="module-output" name="TheR5Game" />
+    </root>
+  </artifact>
+</component>
