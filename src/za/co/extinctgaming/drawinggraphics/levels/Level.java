@@ -6,7 +6,7 @@ import java.awt.*;
 import java.io.Serializable;
 
 
-public class Level implements Serializable{
+public class Level implements Serializable {
     protected String levelName;
     protected Wall[] walls;
     protected Rectangle character;

@@ -53,8 +53,9 @@ public class Main extends JPanel implements Runnable {
     private long ticksTimer = 0;
 
     private Main(GameState state) {
-        this.running = true;
-        this.paused = false;
+        running = true;
+        paused = false;
+
         this.state = state;
 
         Mouse mouse = new Mouse();
@@ -188,7 +189,7 @@ public class Main extends JPanel implements Runnable {
         GameState state;
 
         if (gameStateObj == null) {
-            System.out.println("No Save File Found Creating Default Game State");
+            System.out.println("Creating Default Game State");
             state = new GameState();
         } else {
             System.out.println("Loaded Saved Game State");

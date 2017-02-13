@@ -30,7 +30,7 @@ public class Game extends Screen {
         graphics2D.setColor(LEVEL_BACKGROUND_COLOR);
         graphics2D.fillRect(0, 0, panel.getWidth(), panel.getHeight());
 
-        if (updateCount < 90) {
+        if (updateCount < 60) {
             graphics2D.setColor(LEVEL_TITLE_FOREGROUND_COLOR);
             graphics2D.setFont(LEVEL_TITLE_FONT);
             int text_start_point = (panel.getWidth() / 2) - (graphics2D.getFontMetrics().stringWidth("LEVEL ONE") / 2);

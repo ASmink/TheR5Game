@@ -35,6 +35,13 @@ public class GameState implements Serializable {
     public Level getNextLevel() {
         if (currentLevel < levels.length - 1) {
             currentLevel++;
+        } else {
+            currentLevel = 0;
+        }
+        try {
+            levels[currentLevel] = levels[currentLevel].getClass().newInstance();
+        } catch (InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
         }
         return levels[currentLevel];
     }

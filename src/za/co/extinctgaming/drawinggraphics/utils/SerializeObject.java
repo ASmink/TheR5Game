@@ -43,7 +43,9 @@ public class SerializeObject {
             fileInputStream = new FileInputStream(Main.GAME_HOME_PATH + "\\" + Main.GAME_DIR_PATH + "\\" + Main.GAME_STATE_SERIALIZABLE_PATH);
             objectInputStream = new ObjectInputStream(fileInputStream);
             readObject = objectInputStream.readObject();
-        } catch (IOException | ClassNotFoundException e) {
+        } catch (IOException e) {
+            System.out.println("No Game State Found");
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
             if (objectInputStream != null) {
