@@ -4,7 +4,7 @@ import static za.co.extinctgaming.drawinggraphics.styling.CustomColors.*;
 import static za.co.extinctgaming.drawinggraphics.styling.CustomFonts.*;
 
 import za.co.extinctgaming.drawinggraphics.Main;
-import za.co.extinctgaming.drawinggraphics.core.GameState;
+import za.co.extinctgaming.drawinggraphics.GameState;
 import za.co.extinctgaming.drawinggraphics.input.Keyboard;
 import za.co.extinctgaming.drawinggraphics.input.Mouse;
 import za.co.extinctgaming.drawinggraphics.resources.Images;
@@ -81,6 +81,11 @@ public class MainMenu extends Screen {
             if (item != null) {
                 executeAction(item.getId());
             }
+        }
+
+        if (Keyboard.keys[KeyEvent.VK_F4]) {
+            Keyboard.keys[KeyEvent.VK_F4] = false;
+            Main.activeScreen = new Clock(state, panel);
         }
 
         if (Keyboard.keys[KeyEvent.VK_ESCAPE]) {

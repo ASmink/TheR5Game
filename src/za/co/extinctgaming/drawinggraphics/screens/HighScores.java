@@ -1,7 +1,7 @@
 package za.co.extinctgaming.drawinggraphics.screens;
 
 import za.co.extinctgaming.drawinggraphics.Main;
-import za.co.extinctgaming.drawinggraphics.core.GameState;
+import za.co.extinctgaming.drawinggraphics.GameState;
 import za.co.extinctgaming.drawinggraphics.input.Keyboard;
 import za.co.extinctgaming.drawinggraphics.utils.PrettyPrint;
 

@@ -1,6 +1,9 @@
 package za.co.extinctgaming.drawinggraphics.levels;
 
-import za.co.extinctgaming.drawinggraphics.entities.Wall;
+import za.co.extinctgaming.drawinggraphics.levels.entities.CharacterEntity;
+import za.co.extinctgaming.drawinggraphics.levels.entities.FinnishEntity;
+import za.co.extinctgaming.drawinggraphics.levels.entities.WallEntity;
+import za.co.extinctgaming.drawinggraphics.resources.Textures;
 
 import java.awt.*;
 import java.io.Serializable;
@@ -8,9 +11,10 @@ import java.io.Serializable;
 
 public class Level implements Serializable {
     protected String levelName;
-    protected Wall[] walls;
-    protected Rectangle character;
-    protected Rectangle goal;
+    protected Textures.TextureName background = Textures.TextureName.ERROR;
+    protected WallEntity[] walls;
+    protected CharacterEntity character;
+    protected FinnishEntity finnish;
     protected boolean active;
 
     protected boolean goalReached = false;
@@ -20,13 +24,13 @@ public class Level implements Serializable {
     protected long startTime;
     protected long duration;
 
-    public Wall[] getWalls() {
+    public WallEntity[] getWalls() {
         return walls;
     }
 
     public void calcWallTouch() {
-        for (Wall wall : walls) {
-            if (wall.getPolygon().intersects(character)) {
+        for (WallEntity wall : walls) {
+            if (wall.getPolygon().intersects(character.getRectangle())) {
                 wallTouched = true;
                 active = false;
                 break;
@@ -40,13 +44,13 @@ public class Level implements Serializable {
     }
 
 
-    public Rectangle getCharacter() {
+    public CharacterEntity getCharacter() {
         return character;
     }
 
 
-    public Rectangle getGoal() {
-        return goal;
+    public FinnishEntity getFinnish() {
+        return finnish;
     }
 
 
@@ -54,13 +58,16 @@ public class Level implements Serializable {
         return levelName;
     }
 
+    public Textures.TextureName getBackground() {
+        return background;
+    }
 
     public boolean isGoalReached() {
         return goalReached;
     }
 
     public void calcGoalReached() {
-        if (character.intersects(goal)) {
+        if (character.getRectangle().intersects(finnish.getRectangle())) {
             goalReached = true;
             active = false;
         }

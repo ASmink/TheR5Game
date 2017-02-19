@@ -4,7 +4,7 @@ import static za.co.extinctgaming.drawinggraphics.styling.CustomColors.*;
 import static za.co.extinctgaming.drawinggraphics.styling.CustomFonts.*;
 
 import za.co.extinctgaming.drawinggraphics.Main;
-import za.co.extinctgaming.drawinggraphics.core.GameState;
+import za.co.extinctgaming.drawinggraphics.GameState;
 import za.co.extinctgaming.drawinggraphics.input.Keyboard;
 
 import javax.swing.*;

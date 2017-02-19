@@ -1,6 +1,7 @@
 package za.co.extinctgaming.drawinggraphics.input;
 
 import za.co.extinctgaming.drawinggraphics.Main;
+import za.co.extinctgaming.drawinggraphics.screens.Clock;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;

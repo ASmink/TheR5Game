@@ -1,4 +1,4 @@
-package za.co.extinctgaming.drawinggraphics.core;
+package za.co.extinctgaming.drawinggraphics;
 
 import za.co.extinctgaming.drawinggraphics.levels.*;
 

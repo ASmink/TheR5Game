@@ -1,6 +1,5 @@
 package za.co.extinctgaming.drawinggraphics;
 
-import za.co.extinctgaming.drawinggraphics.core.GameState;
 import za.co.extinctgaming.drawinggraphics.input.Keyboard;
 import za.co.extinctgaming.drawinggraphics.input.Mouse;
 import za.co.extinctgaming.drawinggraphics.resources.Images;

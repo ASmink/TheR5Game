@@ -1,6 +1,6 @@
 package za.co.extinctgaming.drawinggraphics.screens;
 
-import za.co.extinctgaming.drawinggraphics.core.GameState;
+import za.co.extinctgaming.drawinggraphics.GameState;
 
 import javax.swing.*;
 import java.awt.*;
