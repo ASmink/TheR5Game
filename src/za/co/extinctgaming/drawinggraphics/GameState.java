@@ -1,15 +1,17 @@
 package za.co.extinctgaming.drawinggraphics;
 
-import za.co.extinctgaming.drawinggraphics.levels.*;
+import za.co.extinctgaming.drawinggraphics.levels.Level;
+import za.co.extinctgaming.drawinggraphics.levels.Level_1;
+import za.co.extinctgaming.drawinggraphics.levels.Level_2;
 
-import java.io.*;
+import java.io.Serializable;
 
 public class GameState implements Serializable {
     private Level[] levels;
     private long[] highScores;
     private int currentLevel;
 
-    public GameState() {
+    GameState() {
         levels = new Level[2];
         highScores = new long[2];
         currentLevel = 0;
@@ -33,12 +35,14 @@ public class GameState implements Serializable {
     }
 
     public Level getNextLevel() {
-        if (currentLevel < levels.length - 1) {
-            currentLevel++;
-        } else {
-            currentLevel = 0;
-        }
         try {
+            levels[currentLevel] = levels[currentLevel].getClass().newInstance();
+
+            if (currentLevel < levels.length - 1) {
+                currentLevel++;
+            } else {
+                currentLevel = 0;
+            }
             levels[currentLevel] = levels[currentLevel].getClass().newInstance();
         } catch (InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
@@ -58,6 +62,10 @@ public class GameState implements Serializable {
         if (highScores[currentLevel] == -1 || highScores[currentLevel] > levels[currentLevel].getDuration()) {
             highScores[currentLevel] = levels[currentLevel].getDuration();
         }
+    }
+
+    public void setCurrentLevel(int currentLevel) {
+        this.currentLevel = currentLevel;
     }
 
     public long[] getHighScores() {

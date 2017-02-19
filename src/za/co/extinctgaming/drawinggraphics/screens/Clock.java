@@ -12,10 +12,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Clock extends Screen {
-    DateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
-    DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+    private DateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
+    private DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
 
-    public Clock(GameState state, JPanel panel) {
+    Clock(GameState state, JPanel panel) {
         super(state, panel);
     }
 

@@ -13,7 +13,7 @@ import java.awt.event.KeyEvent;
 
 public class Options extends Screen {
 
-    public Options(GameState state, JPanel panel) {
+    Options(GameState state, JPanel panel) {
         super(state, panel);
         panel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
     }

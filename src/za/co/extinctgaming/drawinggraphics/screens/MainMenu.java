@@ -112,9 +112,10 @@ public class MainMenu extends Screen {
     private void executeAction(int itemID) {
         switch (itemID) {
             case 1:
-                Main.activeScreen = new Game(state, panel);
+                Main.activeScreen = new Game(state, panel, 0);
                 break;
             case 2:
+                Main.activeScreen = new Game(state, panel);
                 break;
             case 3:
                 Main.running = false;
@@ -182,16 +183,8 @@ public class MainMenu extends Screen {
             return id;
         }
 
-        public void setId(int id) {
-            this.id = id;
-        }
-
         private String getItemName() {
             return itemName;
-        }
-
-        public void setItemName(String itemName) {
-            this.itemName = itemName;
         }
 
         private boolean isItemSelected() {
@@ -202,11 +195,11 @@ public class MainMenu extends Screen {
             this.itemSelected = itemSelected;
         }
 
-        public Rectangle getArea() {
+        Rectangle getArea() {
             return area;
         }
 
-        public void setArea(Rectangle area) {
+        void setArea(Rectangle area) {
             this.area = area;
         }
     }

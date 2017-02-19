@@ -5,7 +5,7 @@ import za.co.extinctgaming.drawinggraphics.resources.Textures;
 import java.awt.*;
 import java.io.Serializable;
 
-public class CharacterEntity implements Serializable{
+public class CharacterEntity implements Serializable {
     private Rectangle rectangle;
     private Textures.TextureName texture;
 

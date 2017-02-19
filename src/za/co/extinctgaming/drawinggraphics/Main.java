@@ -25,6 +25,8 @@ public class Main extends JPanel implements Runnable {
     public static final String GAME_HOME_PATH = System.getProperty("user.home");
     public static final String GAME_DIR_PATH = ".the_r5_game";
     public static final String GAME_STATE_SERIALIZABLE_PATH = "GameState.dat";
+    private static final int GAME_WINDOW_WIDTH = 1280;
+    private static final int GAME_WINDOW_HEIGHT = 720;
 
     public static Images images;
 
@@ -33,20 +35,10 @@ public class Main extends JPanel implements Runnable {
     public static boolean running;
     public static boolean paused;
 
-    private GameState state;
-
-    private int window_width = 1280;
-    private int window_height = 720;
-
-    private Thread thread;
-    private JFrame frame;
-
-    private long fpsNow;
     private int framesCount = 0;
     private int framesCountAvg = 0;
     private long framesTimer = 0;
 
-    private long tickNow;
     private int ticksCount = 0;
     private int ticksCountAvg = 0;
     private long ticksTimer = 0;
@@ -54,8 +46,6 @@ public class Main extends JPanel implements Runnable {
     private Main(GameState state) {
         running = true;
         paused = false;
-
-        this.state = state;
 
         Mouse mouse = new Mouse();
         this.addMouseListener(mouse);
@@ -78,14 +68,14 @@ public class Main extends JPanel implements Runnable {
     }
 
     private void createFrame() {
-        frame = new JFrame();
+        JFrame frame = new JFrame();
 
         Keyboard keyboard = new Keyboard();
         frame.addKeyListener(keyboard);
 
         frame.getContentPane().add(this);
 
-        frame.setSize(window_width, window_height);
+        frame.setSize(GAME_WINDOW_WIDTH, GAME_WINDOW_HEIGHT);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
@@ -93,7 +83,7 @@ public class Main extends JPanel implements Runnable {
     }
 
     private void createThread() {
-        thread = new Thread(this, "Game");
+        Thread thread = new Thread(this, "Game");
         thread.start();
     }
 
@@ -153,7 +143,7 @@ public class Main extends JPanel implements Runnable {
             delta += (now - lastTime) / ns;
             lastTime = now;
             if (delta >= 1) {
-                tickNow = System.currentTimeMillis();
+                long tickNow = System.currentTimeMillis();
                 ticksCount++;
                 if (tickNow - ticksTimer > 1000) {
                     ticksTimer = tickNow;
@@ -167,7 +157,7 @@ public class Main extends JPanel implements Runnable {
             }
 
             // DRAW FPS:
-            fpsNow = System.currentTimeMillis();
+            long fpsNow = System.currentTimeMillis();
             framesCount++;
             if (fpsNow - framesTimer > 1000) {
                 framesTimer = fpsNow;

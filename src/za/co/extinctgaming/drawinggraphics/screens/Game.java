@@ -6,7 +6,6 @@ import za.co.extinctgaming.drawinggraphics.levels.entities.WallEntity;
 import za.co.extinctgaming.drawinggraphics.input.Keyboard;
 import za.co.extinctgaming.drawinggraphics.input.Mouse;
 import za.co.extinctgaming.drawinggraphics.resources.Textures;
-import za.co.extinctgaming.drawinggraphics.styling.CustomColors;
 import za.co.extinctgaming.drawinggraphics.utils.SerializeObject;
 
 import javax.swing.*;
@@ -23,13 +22,21 @@ public class Game extends Screen {
 
     private long updateCount = 0;
 
-    public Game(GameState state, JPanel panel) {
+    Game(GameState state, JPanel panel) {
         super(state, panel);
+    }
+
+    Game(GameState state, JPanel panel, int level) {
+        super(state, panel);
+        state.setCurrentLevel(level);
     }
 
     @Override
     public void draw(Graphics2D graphics2D) {
         if (updateCount < 60) {
+            // +------------------------------------------------------------------------------------------------------+
+            // | LEVEL SPLASH SCREEN                                                                                  |
+            // +------------------------------------------------------------------------------------------------------+
             graphics2D.setColor(LEVEL_BACKGROUND_COLOR);
             graphics2D.fillRect(0, 0, panel.getWidth(), panel.getHeight());
             graphics2D.setColor(LEVEL_TITLE_FOREGROUND_COLOR);
@@ -37,13 +44,17 @@ public class Game extends Screen {
             int text_start_point = (panel.getWidth() / 2) - (graphics2D.getFontMetrics().stringWidth(state.getCurrentLevel().getLevelName()) / 2);
             graphics2D.drawString(state.getCurrentLevel().getLevelName(), text_start_point, 350);
         } else {
+            // +------------------------------------------------------------------------------------------------------+
+            // | LEVEL PATH BACKGROUND                                                                                |
+            // +------------------------------------------------------------------------------------------------------+
             Textures.Texture backgroundPaint = Textures.getInstance().getTextures().get(state.getCurrentLevel().getBackground());
             graphics2D.setPaint(new TexturePaint(backgroundPaint.getImage(), backgroundPaint.getSize()));
             graphics2D.fillRect(0, 0, panel.getWidth(), panel.getHeight());
             graphics2D.setPaint(null);
 
-            graphics2D.setColor(WALL_COLOR);
-
+            // +------------------------------------------------------------------------------------------------------+
+            // | LEVEL WALLS                                                                                          |
+            // +------------------------------------------------------------------------------------------------------+
             for (WallEntity wall : state.getCurrentLevel().getWalls()) {
                 Textures.Texture wallPaint = Textures.getInstance().getTextures().get(wall.getTexture());
                 graphics2D.setPaint(new TexturePaint(wallPaint.getImage(), wallPaint.getSize()));
@@ -51,18 +62,25 @@ public class Game extends Screen {
                 graphics2D.setPaint(null);
             }
 
-            graphics2D.setColor(CHAR_COLOR);
+            // +------------------------------------------------------------------------------------------------------+
+            // | LEVEL CHARACTER                                                                                      |
+            // +------------------------------------------------------------------------------------------------------+
             Textures.Texture characterPaint = Textures.getInstance().getTextures().get(state.getCurrentLevel().getCharacter().getTexture());
             graphics2D.setPaint(new TexturePaint(characterPaint.getImage(), characterPaint.getSize()));
             graphics2D.fill(state.getCurrentLevel().getCharacter().getRectangle());
             graphics2D.setPaint(null);
 
-            graphics2D.setColor(FINNISH_COLOR);
+            // +------------------------------------------------------------------------------------------------------+
+            // | LEVEL FINNISH                                                                                        |
+            // +------------------------------------------------------------------------------------------------------+
             Textures.Texture finnishPaint = Textures.getInstance().getTextures().get(state.getCurrentLevel().getFinnish().getTexture());
             graphics2D.setPaint(new TexturePaint(finnishPaint.getImage(), finnishPaint.getSize()));
             graphics2D.fill(state.getCurrentLevel().getFinnish().getRectangle());
             graphics2D.setPaint(null);
 
+            // +------------------------------------------------------------------------------------------------------+
+            // | LEVEL FAILED                                                                                         |
+            // +------------------------------------------------------------------------------------------------------+
             if (state.getCurrentLevel().isWallTouched() || state.getCurrentLevel().isOutOfBounds()) {
                 graphics2D.setColor(FAILED_BACKGROUND_COLOR);
                 graphics2D.fillRect(0, 0, panel.getWidth(), panel.getHeight());
@@ -78,6 +96,9 @@ public class Game extends Screen {
                 graphics2D.drawString(spaceMessage, text_start_point, 400);
             }
 
+            // +------------------------------------------------------------------------------------------------------+
+            // | LEVEL COMPLETED                                                                                      |
+            // +------------------------------------------------------------------------------------------------------+
             if (state.getCurrentLevel().isGoalReached()) {
                 graphics2D.setColor(COMPLETED_BACKGROUND_COLOR);
                 graphics2D.fillRect(0, 0, panel.getWidth(), panel.getHeight());
@@ -93,6 +114,9 @@ public class Game extends Screen {
                 graphics2D.drawString(spaceMessage, text_start_point, 400);
             }
 
+            // +------------------------------------------------------------------------------------------------------+
+            // | TOP STATUS BAR                                                                                       |
+            // +------------------------------------------------------------------------------------------------------+
             graphics2D.setColor(Color.BLACK);
             graphics2D.fillRect(0, 0, panel.getWidth(), 20);
 
@@ -120,7 +144,7 @@ public class Game extends Screen {
         }
 
         if (state.getCurrentLevel().getCharacter().getRectangle().contains(Mouse.mousePos.getX(), Mouse.mousePos.getY()) && Mouse.mouseButtons[MouseEvent.BUTTON1]) {
-            state.getCurrentLevel().setActive(true);
+            state.getCurrentLevel().setActive();
         }
 
         if (state.getCurrentLevel().isActive()) {
@@ -151,7 +175,7 @@ public class Game extends Screen {
         }
 
         if (!panel.getBounds().contains(state.getCurrentLevel().getCharacter().getRectangle())) {
-            state.getCurrentLevel().setOutOfBounds(true);
+            state.getCurrentLevel().setOutOfBounds();
         }
     }
 }

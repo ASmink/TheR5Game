@@ -22,10 +22,6 @@ public class WallEntity implements Serializable {
         return polygon;
     }
 
-    public void setPolygon(Polygon polygon) {
-        this.polygon = polygon;
-    }
-
     public Textures.TextureName getTexture() {
         return texture;
     }

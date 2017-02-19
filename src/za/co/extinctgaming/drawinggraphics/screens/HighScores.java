@@ -14,7 +14,7 @@ import static za.co.extinctgaming.drawinggraphics.styling.CustomFonts.*;
 
 public class HighScores extends Screen {
 
-    public HighScores(GameState state, JPanel panel) {
+    HighScores(GameState state, JPanel panel) {
         super(state, panel);
     }
 

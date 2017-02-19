@@ -5,24 +5,23 @@ import za.co.extinctgaming.drawinggraphics.levels.entities.FinnishEntity;
 import za.co.extinctgaming.drawinggraphics.levels.entities.WallEntity;
 import za.co.extinctgaming.drawinggraphics.resources.Textures;
 
-import java.awt.*;
 import java.io.Serializable;
 
 
 public class Level implements Serializable {
-    protected String levelName;
-    protected Textures.TextureName background = Textures.TextureName.ERROR;
-    protected WallEntity[] walls;
-    protected CharacterEntity character;
-    protected FinnishEntity finnish;
-    protected boolean active;
+    String levelName;
+    Textures.TextureName background = Textures.TextureName.ERROR;
+    WallEntity[] walls;
+    CharacterEntity character;
+    FinnishEntity finnish;
 
-    protected boolean goalReached = false;
-    protected boolean wallTouched = false;
-    protected boolean outOfBounds = false;
+    private boolean active;
+    private boolean goalReached = false;
+    private boolean wallTouched = false;
+    private boolean outOfBounds = false;
 
-    protected long startTime;
-    protected long duration;
+    private long startTime;
+    private long duration;
 
     public WallEntity[] getWalls() {
         return walls;
@@ -84,19 +83,17 @@ public class Level implements Serializable {
     }
 
 
-    public void setActive(boolean active) {
-        if (active) {
-            startTime = System.currentTimeMillis();
-        }
-        this.active = active;
+    public void setActive() {
+        startTime = System.currentTimeMillis();
+        this.active = true;
     }
 
     public boolean isOutOfBounds() {
         return outOfBounds;
     }
 
-    public void setOutOfBounds(boolean outOfBounds) {
-        this.outOfBounds = outOfBounds;
+    public void setOutOfBounds() {
+        this.outOfBounds = true;
     }
 
     public long getDuration() {

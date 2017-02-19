@@ -18,20 +18,33 @@ public class Textures {
 
     public enum TextureName {
         ERROR,
-        BLUE_BRICKS,
-        RED_BRICKS,
-        FLOWER_GRASS,
-        GRAY_LEOPARD,
-        BROWN_LEOPARD
+        // - ARCHITECTURE
+        // -- BRICKS
+        // --- COLORED BRICKS
+        // ---- RUSTIC
+        BRICKS_BLUE,
+        BRICKS_RED,
+        // - NATURE ELEMENTS
+        // -- VEGETATION
+        // --- FLOWERY FIELDS
+        GRASS_FLOWERED,
+        // - MATERIALS
+        // -- FUR ANIMAL
+        LEOPARD_SKIN_GRAY,
+        LEOPARD_SKIN_BROWN,
+        // -- FABRICS
+        // --- TARTAN
+        TARTAN_FABRIC_RED_GREEN
     }
 
     private Textures() {
         textures.put(TextureName.ERROR, new Texture("/textures/error.png", 128, 128));
-        textures.put(TextureName.BLUE_BRICKS, new Texture("/textures/7_texture colored bricks rustic-seamless.jpg", 128, 158));
-        textures.put(TextureName.RED_BRICKS, new Texture("/textures/18_texture colored bricks rustic-seamless.jpg", 128, 158));
-        textures.put(TextureName.FLOWER_GRASS, new Texture("/textures/1_flowery meadow texture-seamless.jpg", 128, 128));
-        textures.put(TextureName.GRAY_LEOPARD, new Texture("/textures/11_gray leopard faux fake fur animal texture-seamless.jpg", 128, 128));
-        textures.put(TextureName.BROWN_LEOPARD, new Texture("/textures/2_ghepardo faux fake fur animal texture-seamless.jpg", 128, 128));
+        textures.put(TextureName.BRICKS_BLUE, new Texture("/textures/7_texture colored bricks rustic-seamless.jpg", 128, 158));
+        textures.put(TextureName.BRICKS_RED, new Texture("/textures/18_texture colored bricks rustic-seamless.jpg", 128, 158));
+        textures.put(TextureName.GRASS_FLOWERED, new Texture("/textures/1_flowery meadow texture-seamless.jpg", 128, 128));
+        textures.put(TextureName.LEOPARD_SKIN_GRAY, new Texture("/textures/11_gray leopard faux fake fur animal texture-seamless.jpg", 128, 128));
+        textures.put(TextureName.LEOPARD_SKIN_BROWN, new Texture("/textures/2_ghepardo faux fake fur animal texture-seamless.jpg", 128, 128));
+        textures.put(TextureName.TARTAN_FABRIC_RED_GREEN, new Texture("/textures/12_tartan fabric texture-seamless.jpg", 128, 128));
     }
 
     public Map<TextureName, Texture> getTextures() {
